@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:sticky_notes/page/note_edit_page.dart';
 import 'package:sticky_notes/providers.dart';
 
+import '../data/note.dart';
+
 class NoteViewPage extends StatefulWidget {
 
   static const routeName = '/view';
 
-  final int index;
+  final int id;
 
-  NoteViewPage(this.index);
+  NoteViewPage(this.id);
 
   @override
   State createState() => _NoteViewPageState();
@@ -18,36 +20,56 @@ class NoteViewPage extends StatefulWidget {
 class _NoteViewPageState extends State<NoteViewPage> {
   @override
   Widget build(BuildContext context) {
-    final note = noteManager().getNote(widget.index);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(note.title.isEmpty ? 'null' : note.title),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.edit),
-            tooltip: 'Edit',
-            onPressed: () {
-              _edit(widget.index);
-            },
+    return FutureBuilder<Note> (
+      future: noteManager().getNote(widget.id),
+      builder: (context, snap) {
+        if (snap.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (snap.hasError) {
+          return Scaffold(
+            appBar: AppBar(),
+            body: Center(
+              child: Text('Unexpected Error'),
+            ),
+          );
+        }
+
+        final note = snap.requireData;
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(note.title.isEmpty ? 'null' : note.title),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.edit),
+                tooltip: 'Edit',
+                onPressed: () {
+                  _edit(widget.id);
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.delete),
+                tooltip: 'Delete',
+                onPressed: () {
+                  _confirmDelete(widget.id);
+                },
+              ),
+            ],
           ),
-          IconButton(
-            icon: Icon(Icons.delete),
-            tooltip: 'Delete',
-            onPressed: () {
-              _confirmDelete(widget.index);
-            },
+          body: SizedBox.expand(
+            child: Container(
+              color: note.color,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+                child: Text(note.body),
+              ),
+            ),
           ),
-        ],
-      ),
-      body: SizedBox.expand(
-        child: Container(
-          color: note.color,
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
-            child: Text(note.body),
-          ),
-        ),
-      ),
+        );
+      },
     );
   }
 

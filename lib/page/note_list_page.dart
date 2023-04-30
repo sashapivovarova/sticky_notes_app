@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sticky_notes/data/note.dart';
 import 'package:sticky_notes/page/note_edit_page.dart';
 import 'package:sticky_notes/page/note_view_page.dart';
-
 import '../providers.dart';
 
 class NoteListPage extends StatefulWidget {
@@ -19,18 +18,37 @@ class _NoteListPageState extends State<NoteListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sticky Notes'),
+        title: Text('Soru Notes'),
       ),
-      body: GridView(
-        children: _buildCards(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1,
-        ),
-        padding: EdgeInsets.symmetric(
-          horizontal: 12.0,
-          vertical: 16.0,
-        ),
+      body: FutureBuilder<List<Note>>(
+        future: noteManager().listNotes(),
+        builder: (context, snap) {
+          if (snap.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (snap.hasError) {
+            return Scaffold(
+              appBar: AppBar(),
+              body: Center(
+                child: Text('Unexpected Error'),
+              ),
+            );
+          }
+
+          final notes = snap.requireData;
+          return GridView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+            itemCount: notes.length,
+            itemBuilder: (context, index) => _buildCard(notes[index]),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1,
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -44,13 +62,7 @@ class _NoteListPageState extends State<NoteListPage> {
       );
     }
 
-    List<Widget> _buildCards() {
-    final notes = noteManager().listNotes();
-      return List.generate(
-          notes.length, (index) => _buildCard(index, notes[index]));
-    }
-
-    Widget _buildCard(int index, Note note) {
+    Widget _buildCard(Note note) {
       return InkWell(
         child: Card(
           color: note.color,
@@ -82,7 +94,7 @@ class _NoteListPageState extends State<NoteListPage> {
           Navigator.pushNamed(
             context,
             NoteViewPage.routeName,
-            arguments: index,
+            arguments: note.id,
           ).then((_) {
             setState(() {});
           });

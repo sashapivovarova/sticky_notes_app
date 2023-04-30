@@ -5,9 +5,9 @@ import 'package:sticky_notes/providers.dart';
 class NoteEditPage extends StatefulWidget {
   static const routeName = '/edit';
 
-  final int? index;
+  final int? id;
 
-  NoteEditPage(this.index);
+  NoteEditPage(this.id);
 
   @override
   State createState() => _NoteEditPageState();
@@ -24,12 +24,15 @@ class _NoteEditPageState extends State<NoteEditPage> {
   @override
   void initState() {
     super.initState();
-    final noteIndex = widget.index;
-    if (noteIndex != null) {
-      final note = noteManager().getNote(noteIndex);
-      titleController.text = note.title;
-      bodyController.text = note.body;
-      color = note.color;
+    final noteId = widget.id;
+    if (noteId != null) {
+      noteManager().getNote(noteId).then((note) {
+        titleController.text = note.title;
+        bodyController.text = note.body;
+        setState(() {
+          color = note.color;
+        });
+      });
     }
   }
 
@@ -141,7 +144,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
         color: color,
       );
 
-      final noteIndex = widget.index;
+      final noteIndex = widget.id;
       if (noteIndex != null) {
         noteManager().updateNote(noteIndex, note);
       } else {
