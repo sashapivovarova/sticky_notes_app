@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:sticky_notes/data/note.dart';
 
