@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eunsol.note.sticky.sticky_notes">
    <application
-        android:label="sticky_notes"
+        android:label="Simple Sticky Notes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

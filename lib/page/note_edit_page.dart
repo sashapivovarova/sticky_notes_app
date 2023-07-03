@@ -40,7 +40,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('NoteEdit'),
+        title: Text('Edit'),
         actions: [
           IconButton(
             onPressed: _displayColorSelectionDialog,

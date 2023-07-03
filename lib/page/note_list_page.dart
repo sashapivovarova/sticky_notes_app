@@ -18,7 +18,7 @@ class _NoteListPageState extends State<NoteListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Soru Notes'),
+        title: Text('Notes'),
       ),
       body: FutureBuilder<List<Note>>(
         future: noteManager().listNotes(),
