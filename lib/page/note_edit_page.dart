@@ -46,11 +46,15 @@ class _NoteEditPageState extends State<NoteEditPage> {
         actions: [
           IconButton(
               onPressed: _displayColorSelectionDialog,
-              icon: const Icon(Icons.color_lens),
+              icon: const Icon(
+                Icons.color_lens_rounded,
+              ),
               tooltip: 'Select Background Color'),
           IconButton(
             onPressed: _saveNote,
-            icon: const Icon(Icons.save),
+            icon: const Icon(
+              Icons.save_rounded,
+            ),
             tooltip: 'Save',
           ),
         ],
@@ -62,11 +66,14 @@ class _NoteEditPageState extends State<NoteEditPage> {
             padding:
                 const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 TextField(
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: 'Title'),
+                    border: OutlineInputBorder(),
+                    hintText: 'Input the title',
+                    labelText: 'Title',
+                  ),
                   maxLines: 1,
                   style: const TextStyle(fontSize: 20.0),
                   controller: titleController,
@@ -78,6 +85,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Enter the content',
+                    labelText: 'Memo',
                   ),
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
@@ -98,12 +106,15 @@ class _NoteEditPageState extends State<NoteEditPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Select Background Color'),
+          title: const Text('Select Memo Color'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: const Text('None'),
+                leading: const CircleAvatar(
+                  backgroundColor: Note.colorDefault,
+                ),
+                title: const Text('White'),
                 onTap: () => _applyColor(Note.colorDefault),
               ),
               ListTile(
@@ -172,10 +183,12 @@ class _NoteEditPageState extends State<NoteEditPage> {
 
       Navigator.pop(context);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('The content is empty'),
-        behavior: SnackBarBehavior.floating,
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Memo is empty'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
     }
   }
 }
