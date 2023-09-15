@@ -1,9 +1,7 @@
-
 import 'package:sqflite/sqflite.dart';
 import 'package:sticky_notes/data/note.dart';
 
 class NoteManager {
-
   static const _databaseName = 'notes.db';
 
   static const _databaseVersion = 1;
@@ -36,7 +34,9 @@ class NoteManager {
 
   Future<List<Note>> listNotes() async {
     final db = await _getDatabase();
-    final rows = await db.query(Note.tableName,);
+    final rows = await db.query(
+      Note.tableName,
+    );
     return rows.map((row) => Note.fromRow(row)).toList();
   }
 
@@ -51,12 +51,11 @@ class NoteManager {
   }
 
   Future<Database> _getDatabase() async {
-    if(_database == null) {
-      _database = await openDatabase(
-        _databaseName,
-        version: _databaseVersion,
-        onCreate: (db, version) {
-          final sql = '''
+    _database ??= await openDatabase(
+      _databaseName,
+      version: _databaseVersion,
+      onCreate: (db, version) {
+        const sql = '''
       CREATE TABLE ${Note.tableName} (
         ${Note.columnId} INTEGER PRIMARY KEY AUTOINCREMENT,
         ${Note.columnTitle} TEXT,
@@ -66,9 +65,8 @@ class NoteManager {
     ''';
 
         return db.execute(sql);
-      },);
-    }
+      },
+    );
     return _database!;
   }
-
 }

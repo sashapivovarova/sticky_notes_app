@@ -7,7 +7,7 @@ class NoteEditPage extends StatefulWidget {
 
   final int? id;
 
-  NoteEditPage(this.id);
+  const NoteEditPage(this.id, {super.key});
 
   @override
   State createState() => _NoteEditPageState();
@@ -19,7 +19,6 @@ class _NoteEditPageState extends State<NoteEditPage> {
   final bodyController = TextEditingController();
 
   Color color = Note.colorDefault;
-
 
   @override
   void initState() {
@@ -40,36 +39,40 @@ class _NoteEditPageState extends State<NoteEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit'),
+        title: const Text('Edit'),
         actions: [
           IconButton(
-            onPressed: _displayColorSelectionDialog,
-            icon: Icon(Icons.color_lens),
-            tooltip: 'Select Background Color'
+              onPressed: _displayColorSelectionDialog,
+              icon: const Icon(Icons.color_lens),
+              tooltip: 'Select Background Color'),
+          IconButton(
+            onPressed: _saveNote,
+            icon: const Icon(Icons.save),
+            tooltip: 'Save',
           ),
-          IconButton(onPressed: _saveNote, icon: Icon(Icons.save), tooltip: 'Save',),
         ],
       ),
       body: SizedBox.expand(
         child: Container(
           color: color,
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Title'
-                  ),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(), labelText: 'Title'),
                   maxLines: 1,
-                  style: TextStyle(fontSize: 20.0),
+                  style: const TextStyle(fontSize: 20.0),
                   controller: titleController,
                 ),
-                SizedBox(height: 8.0,),
+                const SizedBox(
+                  height: 8.0,
+                ),
                 TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Enter the content',
                   ),
@@ -88,45 +91,58 @@ class _NoteEditPageState extends State<NoteEditPage> {
   void _displayColorSelectionDialog() {
     FocusManager.instance.primaryFocus?.unfocus();
 
-    showDialog(context: context, builder: (context) {
-      return AlertDialog(
-        title: Text('Select Background Color'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              title: Text('None'),
-              onTap: () => _applyColor(Note.colorDefault),
-            ),
-            ListTile(
-              leading: CircleAvatar(backgroundColor: Note.colorRed,),
-              title: Text('Red'),
-              onTap: () => _applyColor(Note.colorRed),
-            ),
-            ListTile(
-              leading: CircleAvatar(backgroundColor: Note.colorOrange,),
-              title: Text('Orange'),
-              onTap: () => _applyColor(Note.colorOrange),
-            ),
-            ListTile(
-              leading: CircleAvatar(backgroundColor: Note.colorYellow,),
-              title: Text('Yellow'),
-              onTap: () => _applyColor(Note.colorYellow),
-            ),
-            ListTile(
-              leading: CircleAvatar(backgroundColor: Note.colorLime,),
-              title: Text('Lime'),
-              onTap: () => _applyColor(Note.colorLime),
-            ),
-            ListTile(
-              leading: CircleAvatar(backgroundColor: Note.colorBlue,),
-              title: Text('Blue'),
-              onTap: () => _applyColor(Note.colorBlue),
-            )
-          ],
-        ),
-      );
-    },);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Select Background Color'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('None'),
+                onTap: () => _applyColor(Note.colorDefault),
+              ),
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Note.colorRed,
+                ),
+                title: const Text('Red'),
+                onTap: () => _applyColor(Note.colorRed),
+              ),
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Note.colorOrange,
+                ),
+                title: const Text('Orange'),
+                onTap: () => _applyColor(Note.colorOrange),
+              ),
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Note.colorYellow,
+                ),
+                title: const Text('Yellow'),
+                onTap: () => _applyColor(Note.colorYellow),
+              ),
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Note.colorLime,
+                ),
+                title: const Text('Lime'),
+                onTap: () => _applyColor(Note.colorLime),
+              ),
+              ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Note.colorBlue,
+                ),
+                title: const Text('Blue'),
+                onTap: () => _applyColor(Note.colorBlue),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
   void _applyColor(Color newColor) {
@@ -153,7 +169,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
 
       Navigator.pop(context);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('The content is empty'),
         behavior: SnackBarBehavior.floating,
       ));
