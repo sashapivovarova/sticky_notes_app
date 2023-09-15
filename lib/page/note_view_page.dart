@@ -63,21 +63,26 @@ class _NoteViewPageState extends State<NoteViewPage> {
 
         if (snap.hasError) {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              title: const Text('Unexpected error!'),
+            ),
             body: const Center(
-              child: Text('Unexpected Error'),
+              child: Text('Please try again.'),
             ),
           );
         }
 
         final note = snap.requireData;
+
         return Scaffold(
           appBar: AppBar(
             backgroundColor: note.color,
             title: Text(note.title.isEmpty ? 'null' : note.title),
             actions: [
               IconButton(
-                icon: const Icon(Icons.edit),
+                icon: const Icon(
+                  Icons.edit_rounded,
+                ),
                 tooltip: 'Edit',
                 onPressed: () {
                   edit(widget.id);

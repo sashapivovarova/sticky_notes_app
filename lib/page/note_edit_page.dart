@@ -15,10 +15,10 @@ class NoteEditPage extends StatefulWidget {
 
 class _NoteEditPageState extends State<NoteEditPage> {
   final titleController = TextEditingController();
-
   final bodyController = TextEditingController();
 
   Color color = Note.colorDefault;
+  bool newMemo = true;
 
   @override
   void initState() {
@@ -30,6 +30,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
         bodyController.text = note.body;
         setState(() {
           color = note.color;
+          newMemo = false;
         });
       });
     }
@@ -39,7 +40,9 @@ class _NoteEditPageState extends State<NoteEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit'),
+        title: Text(
+          newMemo ? 'New Memo' : 'Edit',
+        ),
         actions: [
           IconButton(
               onPressed: _displayColorSelectionDialog,
