@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sticky_notes/data/button.dart';
 import 'package:sticky_notes/data/note.dart';
 import 'package:sticky_notes/page/note_edit_page.dart';
 import 'package:sticky_notes/page/note_view_page.dart';
@@ -73,18 +74,33 @@ class _NoteListPageState extends State<NoteListPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                note.title.isEmpty ? '(null)' : note.title,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: 120,
+                    child: Text(
+                      note.title.isEmpty ? '(null)' : note.title,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                  const IconButtonAnchorExample(),
+                ],
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(
+                height: 5,
+              ),
               Expanded(
                 child: Text(
                   note.body,
-                  overflow: TextOverflow.fade,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ],
