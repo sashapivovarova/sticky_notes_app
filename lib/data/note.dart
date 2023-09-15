@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class Note {
   static const colorDefault = Colors.white;
 
-  static const colorRed = Color(0xFFFFCDD2);
+  static const colorRed = Color(0xffffd9de);
 
-  static const colorOrange = Color(0xFFFFE0B2);
+  static const colorOrange = Color(0xfffedcbf);
 
-  static const colorYellow = Color(0xFFFFF9C4);
+  static const colorYellow = Color(0xfff3e57e);
 
-  static const colorLime = Color(0xFFF0F4C3);
+  static const colorLime = Color(0xffd5e8cf);
 
-  static const colorBlue = Color(0xFFBBDEFB);
+  static const colorBlue = Color(0xffd0e4fe);
 
   static const tableName = 'notes';
 
