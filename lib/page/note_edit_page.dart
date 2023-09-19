@@ -43,6 +43,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
         title: Text(
           newMemo ? 'New Memo' : 'Edit',
         ),
+        backgroundColor: color,
         actions: [
           IconButton(
               onPressed: _displayColorSelectionDialog,
