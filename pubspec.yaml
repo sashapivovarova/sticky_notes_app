@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  introduction_screen: ^3.1.11
   sqflite: ^2.2.7
 
 dev_dependencies:
