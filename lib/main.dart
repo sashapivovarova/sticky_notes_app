@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sticky_notes/page/note_edit_page.dart';
 import 'package:sticky_notes/page/note_list_page.dart';
 import 'package:sticky_notes/page/note_view_page.dart';
+import 'package:sticky_notes/page/onboarding_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      initialRoute: NoteListPage.routeName,
+      initialRoute: OnBoardingPage.routeName,
       routes: {
+        OnBoardingPage.routeName: (context) => const OnBoardingPage(),
         NoteListPage.routeName: (context) => const NoteListPage(),
         NoteEditPage.routeName: (context) {
           final args = ModalRoute.of(context)!.settings.arguments;

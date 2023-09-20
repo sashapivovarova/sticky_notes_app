@@ -5,7 +5,7 @@ import 'package:sticky_notes/page/note_view_page.dart';
 import '../providers.dart';
 
 class NoteListPage extends StatefulWidget {
-  static const routeName = '/';
+  static const routeName = '/list';
 
   const NoteListPage({super.key});
 
