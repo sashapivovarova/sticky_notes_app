@@ -11,34 +11,20 @@ class OnBoardingPage extends StatelessWidget {
       showSkipButton: true,
       skip: const Text(
         'Skip',
-        style: TextStyle(
-          color: Colors.pink,
-        ),
       ),
       onSkip: () {
         Navigator.pushNamed(context, '/list');
       },
       done: const Text(
         'Start',
-        style: TextStyle(
-          color: Colors.pink,
-        ),
       ),
       onDone: () {
         Navigator.pushNamed(context, '/list');
       },
       next: const Text(
         'Next',
-        style: TextStyle(
-          color: Colors.pink,
-        ),
-      ),
-      dotsContainerDecorator: const BoxDecoration(
-        color: Colors.black,
       ),
       dotsDecorator: DotsDecorator(
-        color: Colors.white,
-        activeColor: Colors.pink,
         activeSize: const Size(
           30,
           10,
@@ -77,16 +63,13 @@ class OnBoardingPage extends StatelessWidget {
       titleTextStyle: TextStyle(
         fontSize: 28,
         fontWeight: FontWeight.bold,
-        color: Colors.pink,
       ),
       bodyTextStyle: TextStyle(
         fontSize: 18,
-        color: Colors.pink,
       ),
       imagePadding: EdgeInsets.only(
         top: 40,
       ),
-      pageColor: Colors.black,
     );
   }
 }
