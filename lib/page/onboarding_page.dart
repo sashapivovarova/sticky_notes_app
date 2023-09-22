@@ -37,20 +37,20 @@ class OnBoardingPage extends StatelessWidget {
       ),
       pages: [
         PageViewModel(
-          title: 'Home',
-          body: 'You can look everything',
+          title: 'Note',
+          body: 'Add the note',
           image: Image.asset('assets/11.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: 'Search',
+          title: 'Edit',
           body: 'You can search everything',
           image: Image.asset('assets/12.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: 'Shopping cart',
-          body: 'You can buy everything',
+          title: 'Coloring',
+          body: '6 Colors',
           image: Image.asset('assets/13.png'),
           decoration: getPageDecoration(),
         ),
