@@ -37,20 +37,20 @@ class OnBoardingPage extends StatelessWidget {
       ),
       pages: [
         PageViewModel(
-          title: 'Note',
+          title: 'Add',
           body: 'Add the note',
           image: Image.asset('assets/11.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
           title: 'Edit',
-          body: 'You can search everything',
+          body: 'Edit the note',
           image: Image.asset('assets/12.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: 'Coloring',
-          body: '6 Colors',
+          title: 'Color',
+          body: 'Color the note',
           image: Image.asset('assets/13.png'),
           decoration: getPageDecoration(),
         ),

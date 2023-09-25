@@ -19,7 +19,7 @@ class _NoteListPageState extends State<NoteListPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Notes'),
+        title: const Text('Sticky Notes'),
       ),
       body: FutureBuilder<List<Note>>(
         future: noteManager().listNotes(),
