@@ -41,7 +41,7 @@ class _NoteViewPageState extends State<NoteViewPage> {
               child: const Text('Yes'),
               onPressed: () {
                 noteManager().deleteNote(index);
-                Navigator.popUntil(context, (route) => route.isFirst);
+                Navigator.pushNamed(context, '/list');
               },
             ),
           ],
