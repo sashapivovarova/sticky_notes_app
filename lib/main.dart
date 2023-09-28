@@ -23,13 +23,6 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.yellow,
-          brightness: Brightness.dark,
-        ),
-      ),
       initialRoute: OnBoardingPage.routeName,
       routes: {
         OnBoardingPage.routeName: (context) => const OnBoardingPage(),
