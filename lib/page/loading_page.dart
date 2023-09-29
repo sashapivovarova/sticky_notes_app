@@ -7,7 +7,10 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sticky Notes'),
+        title: const Text(
+          'Sticky Notes',
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
