@@ -4,10 +4,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sticky_notes/page/loading_page.dart';
 import 'package:sticky_notes/page/note_list_page.dart';
 
-class OnBoardingPage extends StatelessWidget {
+class OnBoardingPage extends StatefulWidget {
   static const routeName = '/';
   const OnBoardingPage({super.key});
 
+  @override
+  State<OnBoardingPage> createState() => _OnBoardingPageState();
+}
+
+class _OnBoardingPageState extends State<OnBoardingPage> {
   Future<bool> haveSeenIntro() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool('haveSeenIntro') ?? false;
