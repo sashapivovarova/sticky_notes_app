@@ -86,11 +86,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 PageDecoration getPageDecoration() {
   return const PageDecoration(
     titleTextStyle: TextStyle(
-      fontSize: 28,
+      fontSize: 30,
       fontWeight: FontWeight.bold,
     ),
     bodyTextStyle: TextStyle(
-      fontSize: 18,
+      fontSize: 22,
     ),
     imagePadding: EdgeInsets.only(
       top: 40,
