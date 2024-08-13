@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="eunsol.note.sticky.sticky_notes">
+    >
    <application
         android:label="Simple Sticky Notes"
         android:name="${applicationName}"
